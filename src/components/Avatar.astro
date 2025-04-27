@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+
+const src = '/assets/img/photo.png';
+
+/**
+ * Image by flatart on Freepik
+ * https://www.freepik.com/free-psd/portrait-girl-black-t-shirt-gray-background_132259808.htm
+ *
+ * Please replace the image with your own and update the alt text accordingly.
+ */
+---
+
+<div class="flex items-center justify-center rounded-full border-4 border-white">
+	<Image
+		src={src}
+		alt="photo"
+		width={200}
+		height={200}
+		fit='cover'
+		class="animate-zoom-in-out rounded-full p-0.5 duration-300 "
+		loading="eager"
+	/>
+</div>

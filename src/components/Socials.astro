@@ -1,0 +1,65 @@
+---
+/**
+ * This section is for adding your social media links.
+ *
+ * 1. Add your social media links: Replace 'xxx' with your username for each social media platform.
+ * 2. Add more links: If you want to include more social media platforms, replicate the existing pattern and update the `Type` enum accordingly.
+ * 3. Adjust the order: You can change the order of the social media icons by rearranging the objects.
+ * 4. Customize icon colors: To change the color of the icons, refer to the Tailwind CSS color classes. Visit: https://tailwindcss.com/docs/customizing-colors
+ *
+ */
+
+import { Icon } from 'astro-icon/components'
+
+enum Type {
+	linkedIn = 'LinkedIn',
+	gitHub = 'GitHub',
+	email = 'Email',
+}
+
+const socials = [
+	{
+		name: Type.gitHub,
+		url: 'https://github.com/Lucas1983',
+		icon: 'mdi:github',
+		color: 'bg-white',
+	},
+	{
+		name: Type.email,
+		url: 'mielczarek.lukasz.karol@gmail.com',
+		icon: 'mdi:at',
+		color: 'bg-white',
+	},
+	{
+		name: Type.linkedIn,
+		url: 'https://www.linkedin.com/in/lukaszmielczarek83',
+		icon: 'mdi:linkedin',
+		color: 'bg-white',
+	},
+];
+
+const getColor = (type: Type) => socials.find((social) => social.name === type)?.color;
+const getClass = (type: Type) =>
+	`scale-100 rounded-full border-2 border-gray-950 ${getColor(
+		type,
+	)} transition duration-300 hover:scale-110 animate-zoom-in`;
+---
+
+<div class="grid grid-cols-3 gap-3 duration-500 md:grid-flow-col md:gap-2">
+	{
+		socials.map((social) => {
+			const href = social.name === Type.email ? `mailto:${social.url}` : social.url;
+			return (
+				<a
+					aria-label={social.name}
+					class={getClass(social.name)}
+					href={href}
+					target="_blank"
+					rel="nofollow noopner"
+				>
+					<Icon name={social.icon} class="w-10 h-10" />
+				</a>
+			);
+		})
+	}
+</div>
